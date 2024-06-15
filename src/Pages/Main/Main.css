@@ -1,0 +1,152 @@
+main {
+    width: 100%;
+    height: 100vh;
+}
+.banner {
+    width: 100%;    
+    height: 100vh;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+}
+.slider {
+    position: absolute;
+    width: 200px;
+    height: 250px;
+    top: 10%;
+    left: calc(50% - 100px);
+    transform-style: preserve-3d;
+    transform: perspective(1000px);
+    animation: autoRun 20s linear infinite;
+    z-index: 2;
+    cursor: pointer;
+}
+@keyframes autoRun {
+    from {
+        transform: perspective(1000px) rotateX(-16deg) rotateY(0deg);
+    }
+    to {
+        transform: perspective(1000px) rotateX(-16deg) rotateY(360deg);
+    }
+}
+.slider .item {
+    position: absolute;
+    inset: 0 0 0 0;
+    transform: 
+        rotateY(calc( (var(--position) - 1) * (360 / var(--quantity)) * 1deg))
+        translateZ(550px);
+}
+.item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+} 
+.content {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(1400px, 100vw);
+    height: max-content;
+    padding-bottom: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1;
+}
+.content h1 {
+    font-family: 'Rubik+Glitch';
+    font-size: 16em;
+    line-height: 1em;
+    color: #25283B;
+    position: relative;
+}
+.content h1::after {
+    position: absolute;
+    inset: 0 0 0 0;
+    content: attr(data-content);
+    z-index: 2;
+    -webkit-text-stroke: 2px #d2d2d2 ;
+    color: transparent;
+}
+.author {
+    font-family: Poppins;
+    text-align: right;
+    max-width: 200px;
+}
+.content h2 {
+    font-size: 3em;
+}
+.model {
+    background-image: url('../../../public/assets/BackgroundLord.png');
+    background-size: auto 130%;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 75vh;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+.infodrag {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top center;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+}
+.size {
+    width: 50%;
+    height: 50%;
+    display: flex;
+    justify-content: end;
+    padding-right: 10%;
+}
+.card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #d2d2d2be;
+    border-radius: 10px;
+    height: fit-content;
+    width: 50%;
+}
+.card h2 {
+    font-size: 4em;
+}
+.card p {
+    max-width: 80%;
+    padding-bottom: 25px;
+}
+@media screen and (max-width: 500px) {
+    .slider {
+        transform: perspective(5000px);
+    }
+    @keyframes autoRun {
+        from {
+            transform: perspective(5000px) rotateX(-16deg) rotateY(0deg);
+        }
+        to {
+            transform: perspective(5000px) rotateX(-16deg) rotateY(360deg);
+        }
+    }
+    .cel {
+        display: none;
+    }
+    .size {
+        flex-direction: column;
+        width: 100%;
+        height: 20%;
+        display: flex;
+        justify-content: end;
+        padding-right: 0;
+    }
+    .card {
+        min-width: fit-content;
+    }
+}
